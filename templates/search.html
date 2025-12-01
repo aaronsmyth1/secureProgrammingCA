@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Search</h2>
+
+    <p id="output"></p>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const msg = params.get("msg") || "";
+        document.getElementById("output").innerHTML = msg;
+    </script>
+</body>
+</html>

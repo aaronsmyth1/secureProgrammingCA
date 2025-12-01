@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Welcome, {{username}}</h2>
+    <p>
+        <a href="/create_post">Create New Post</a> |
+        <a href="/logout">logout</a> | 
+    </p>
+    
+    <h2>Posts</h2>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <h3>{{post.title | safe}}</h3>
+            <p>{{post.content | safe}}</p>
+            <p>by User ID {{post.user_id}}</p>
+            {% if post.user_id == session.user_id %}
+            <a href="/edit_post/{{post.id}}">Edit</a>
+            <form action="/delete_post/{{post.id}}" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+   
+    <h2>DOM Test</h2>
+    <div id="dom-output"></div>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        const domXss = params.get("dom");
+        if (domXss) {
+            document.getElementById("dom-output").innerHTML = domXss;
+        }
+    </script>
+
+
+</body>
+</html>
