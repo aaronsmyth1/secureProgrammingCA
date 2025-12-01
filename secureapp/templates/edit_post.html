@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Post</title>
+</head>
+<body>
+    <h2>Edit Post</h2>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label>Title: <input type="text" name="title" value="{{post.title}}" required></label><br>
+        <Label>Content:<br><textarea name="content" required>{{post.content}}</textarea></Label><br>
+        <button type="submit">Update Post</button>
+    </form>
+    <p><a href="/">Back to Home</a></p>
+</html>

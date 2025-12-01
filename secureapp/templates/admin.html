@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+</head>
+<body>
+    <h2>Admin Page - Welcome {{ username }}</h2>
+    <p><a href="/">Back to Home</a> </p>
+    <p><a href="/admin_logs">Logging and Monitoring</a> </p>
+    <h2>All Posts</h2>
+
+        {% for post in posts %}
+       <div>
+            <h3>{{post.title}}</h3>
+            <p>{{post.content}}</p>
+            <p>by User ID: {{post.user_id}}</p>
+            <a href="/edit_post/{{ post.id}}">Edit</a>
+            <form  method="POST" action="/delete_post/{{post.id}}" style="display:inline;">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+        <hr>
+    {% endfor %}
+</body>
+</html>
